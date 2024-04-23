@@ -12,6 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         require_once "../dbh.inc.php";
         require_once "signup_model.inc.php";
         require_once "signup_controller.inc.php";
+        require_once "../login/login_model.inc.php";
 
         // ERROR HANDLERS
 
@@ -53,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ];
             $_SESSION["signupData"] = $signupData;
 
-            header("location: ../../index.php");
+            header("location: ../../signup.php");
             die();
         }
 

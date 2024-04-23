@@ -56,4 +56,10 @@ function validAddress(string $address)
 function createUser(object $pdo, string $email, string $password, string $name, string $phone, string $address)
 {
     setUser($pdo, $email, $password, $name, $phone, $address);
+
+    $user = getUser($pdo, $email);
+
+    // Log the user in
+    $_SESSION['user_id'] = $user['id'];
+    $_SESSION['user_name'] = $user['name'];
 }

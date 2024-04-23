@@ -1,7 +1,6 @@
 <?php
 require_once "includes/config_session.inc.php";
-require_once "includes/signup/signup_view.inc.php";
-require_once "includes/login/login_view.inc.php";
+require_once "includes/products/productsController.php";
 ?>
 
 <!DOCTYPE html>
@@ -17,49 +16,28 @@ require_once "includes/login/login_view.inc.php";
 
     <h3>
         <?php
-        outputEmail();
+        if (isset($_SESSION['user_id'])) {
+            echo "You are logged in as " . $_SESSION['user_name'];
+        } else {
+            echo "You are not logged in";
+        }
         ?>
     </h3>
 
     <?php
     if (!isset($_SESSION['user_id'])) { ?>
-        <h1>Login </h1>
-
-        <form action="includes/login/login.inc.php" method="post">
-            <label for="email">Email</label>
-            <input type="text" name="email" id="email">
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password">
-            <button type="submit">Login</button>
+        <a href="login.php"><button>Login</button></a>
+        <a href="signup.php"><button>Signup</button></a>
+    <?php } else { ?>
+        <form action="includes/logout.inc.php" method="post">
+            <button type="submit">Logout</button>
         </form>
     <?php }
     ?>
 
+    <!-- Include the products view here -->
+    <?php include "includes/products/productsView.php"; ?>
 
-
-    <?php
-    checkLoginErrors();
-    ?>
-
-    <h1>Signup</h1>
-
-    <form action="includes/signup/signup.inc.php" method="post">
-        <?php
-        signupInput();
-        ?>
-        <button type="submit">Signup</button>
-    </form>
-
-    <?php
-    checkSignupErrors();
-    ?>
-
-    <h1>Logout </h1>
-
-    <form action="includes/logout.inc.php" method="post">
-
-        <button type="submit">Logout</button>
-    </form>
 </body>
 
 </html>
