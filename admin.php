@@ -3,7 +3,14 @@ require_once "navbar.php";
 require_once "includes/config_session.inc.php";
 
 if ($_SESSION['user_role'] !== 'admin') {
-    echo "You are not authorized to access this page.";
+    echo '<div class="container pt-5">';
+    echo '<div class="alert alert-danger" role="alert">';
+    echo 'You are not authorized to access this page.';
+    echo '</div>';
+    echo '<div class="d-flex justify-content-center">';
+    echo '<a href="index.php" class="btn btn-primary btn-lg">Go to Home</a>';
+    echo '</div>';
+    echo '</div>';
     exit();
 }
 
@@ -12,6 +19,7 @@ require_once "includes/products/productsModel.php";
 
 $products = getProducts($pdo);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +35,6 @@ $products = getProducts($pdo);
     <div class="container">
         <h1 class="text-center my-4">Admin Page</h1>
 
-        <!-- Form for adding a new product -->
         <form action="includes/admin/add-products.php" method="post" enctype="multipart/form-data" class="mb-5">
             <div class="mb-3">
                 <label for="name" class="form-label">Product Name</label>
@@ -48,7 +55,6 @@ $products = getProducts($pdo);
             <button type="submit" class="btn btn-primary">Add Product</button>
         </form>
 
-        <!-- List of existing products -->
         <div class="row">
             <?php foreach ($products as $product) : ?>
                 <div class="col-md-4">
@@ -56,14 +62,15 @@ $products = getProducts($pdo);
                         <img src="<?php echo $product['image']; ?>" alt="<?php echo $product['name']; ?>" class="card-img-top">
                         <div class="card-body">
 
-                            <!-- Form for editing an existing product -->
                             <form method="post" action="includes/admin/edit-products.php" class="mb-3">
                                 <input type="hidden" name="id" value="<?php echo $product['id']; ?>">
                                 <input type="text" name="name" placeholder="Product Name" value="<?php echo $product['name']; ?>" required class="form-control">
                                 <input type="number" name="price" placeholder="Price" value="<?php echo $product['price']; ?>" required class="form-control">
                                 <textarea name="description" placeholder="Description" required class="form-control"><?php echo $product['description']; ?></textarea>
-                                <button type="submit" name="edit" class="btn btn-primary mt-2">Edit</button>
+                                <div class="d-flex justify-content-between mt-2">
+                                    <button type="submit" name="edit" class="btn btn-primary">Edit</button>
                             </form>
+
 
                             <form method="post" action="includes/admin/delete-products.php">
                                 <input type="hidden" name="id" value="<?php echo $product['id']; ?>">
@@ -72,8 +79,10 @@ $products = getProducts($pdo);
                         </div>
                     </div>
                 </div>
-            <?php endforeach; ?>
         </div>
+    <?php endforeach; ?>
+    </div>
+
     </div>
 </body>
 
