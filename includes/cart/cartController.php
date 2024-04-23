@@ -29,7 +29,5 @@ foreach ($_SESSION["cart"] as $product_id => $quantity) {
     }
 }
 
-
-
-header("Location: ../../index.php"); 
-// exit();
+header("Location: ../../index.php");
+exit();
