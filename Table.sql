@@ -5,8 +5,9 @@ CREATE TABLE users (
     address VARCHAR(100) NOT NULL,
     password VARCHAR(255) NOT NULL,
     email VARCHAR(100) NOT NULL,
-    created_at DATETIME NOT NULL DEFAULT CURRENT_TIME
+    isAdmin BOOLEAN DEFAULT FALSE
 );
+
 
 
 CREATE TABLE categories (
@@ -26,11 +27,12 @@ CREATE TABLE products (
 CREATE TABLE products (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
+    description TEXT NOT NULL,
     image VARCHAR(255) NOT NULL,
     price DECIMAL(10, 2) NOT NULL
 );
 
-INSERT INTO products (name, image, price) VALUES ('Product 1', 'images/product1.jpg', 99.99);
-INSERT INTO products (name, image, price) VALUES ('Product 2', 'images/product2.jpg', 89.99);
-INSERT INTO products (name, image, price) VALUES ('Product 3', 'images/product3.jpg', 79.99);
+INSERT INTO products (name, description, image, price) VALUES ('Product 1', 'test1' 'images/product1.jpg', 99.99);
+INSERT INTO products (name, description, image, price) VALUES ('Product 2', 'test2' 'images/product2.jpg', 89.99);
+INSERT INTO products (name, description, image, price) VALUES ('Product 3', 'test3' 'images/product3.jpg', 79.99);
 

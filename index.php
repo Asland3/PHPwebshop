@@ -1,6 +1,7 @@
 <?php
 require_once "includes/config_session.inc.php";
 require_once "includes/products/productsController.php";
+require_once "navbar.php";
 ?>
 
 <!DOCTYPE html>
@@ -14,28 +15,6 @@ require_once "includes/products/productsController.php";
 
 <body>
 
-    <h3>
-        <?php
-        if (isset($_SESSION['user_id'])) {
-            echo "You are logged in as " . $_SESSION['user_name'];
-        } else {
-            echo "You are not logged in";
-        }
-        ?>
-    </h3>
-
-    <?php
-    if (!isset($_SESSION['user_id'])) { ?>
-        <a href="login.php"><button>Login</button></a>
-        <a href="signup.php"><button>Signup</button></a>
-    <?php } else { ?>
-        <form action="includes/logout.inc.php" method="post">
-            <button type="submit">Logout</button>
-        </form>
-    <?php }
-    ?>
-
-    <!-- Include the products view here -->
     <?php include "includes/products/productsView.php"; ?>
 
 </body>
