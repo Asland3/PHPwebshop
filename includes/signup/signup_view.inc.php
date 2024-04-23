@@ -5,41 +5,59 @@ declare(strict_types=1);
 function signupInput()
 {
     if (isset($_SESSION["signupData"]["email"]) && !isset($_SESSION["errors_signup"]["emailTaken"]) && !isset($_SESSION["errors_signup"]["invalidEmail"])) {
-
-        echo '<label for="email">Email</label>';
-        echo '<input type="text" name="email" id="email" value="' . $_SESSION["signupData"]["email"] . '">';
+        echo '<div class="mb-3">';
+        echo '<label for="email" class="form-label">Email</label>';
+        echo '<input type="text" name="email" id="email" class="form-control" value="' . $_SESSION["signupData"]["email"] . '">';
+        echo '</div>';
     } else {
-        echo '<label for="email">Email</label>';
-        echo '<input type="text" name="email" id="email">';
+        echo '<div class="mb-3">';
+        echo '<label for="email" class="form-label">Email</label>';
+        echo '<input type="text" name="email" id="email" class="form-control">';
+        echo '</div>';
     }
-    
-    echo '<label for="password">Password</label>';
-    echo '<input type="password" name="password" id="password">';
+
+    echo '<div class="mb-3">';
+    echo '<label for="password" class="form-label">Password</label>';
+    echo '<input type="password" name="password" id="password" class="form-control">';
+    echo '</div>';
 
     if (isset($_SESSION["signupData"]["name"]) && !isset($_SESSION["errors_signup"]["invalidName"])) {
-        echo '<label for="name">Name</label>';
-        echo '<input type="text" name="name" id="name" value="' . $_SESSION["signupData"]["name"] . '">';
+        echo '<div class="mb-3">';
+        echo '<label for="name" class="form-label">Name</label>';
+        echo '<input type="text" name="name" id="name" class="form-control" value="' . $_SESSION["signupData"]["name"] . '">';
+        echo '</div>';
     } else {
-        echo '<label for="name">Name</label>';
-        echo '<input type="text" name="name" id="name">';
+        echo '<div class="mb-3">';
+        echo '<label for="name" class="form-label">Name</label>';
+        echo '<input type="text" name="name" id="name" class="form-control">';
+        echo '</div>';
     }
 
     if (isset($_SESSION["signupData"]["phone"]) && !isset($_SESSION["errors_signup"]["invalidPhone"])) {
-        echo '<label for="phone">Phone</label>';
-        echo '<input type="text" name="phone" id="phone" value="' . $_SESSION["signupData"]["phone"] . '">';
+        echo '<div class="mb-3">';
+        echo '<label for="phone" class="form-label">Phone</label>';
+        echo '<input type="text" name="phone" id="phone" class="form-control" value="' . $_SESSION["signupData"]["phone"] . '">';
+        echo '</div>';
     } else {
-        echo '<label for="phone">Phone</label>';
-        echo '<input type="text" name="phone" id="phone">';
+        echo '<div class="mb-3">';
+        echo '<label for="phone" class="form-label">Phone</label>';
+        echo '<input type="text" name="phone" id="phone" class="form-control">';
+        echo '</div>';
     }
 
     if (isset($_SESSION["signupData"]["address"]) && !isset($_SESSION["errors_signup"]["invalidAddress"])) {
-        echo '<label for="address">Address</label>';
-        echo '<input type="text" name="address" id="address" value="' . $_SESSION["signupData"]["address"] . '">';
+        echo '<div class="mb-3">';
+        echo '<label for="address" class="form-label">Address</label>';
+        echo '<input type="text" name="address" id="address" class="form-control" value="' . $_SESSION["signupData"]["address"] . '">';
+        echo '</div>';
     } else {
-        echo '<label for="address">Address</label>';
-        echo '<input type="text" name="address" id="address">';
+        echo '<div class="mb-3">';
+        echo '<label for="address" class="form-label">Address</label>';
+        echo '<input type="text" name="address" id="address" class="form-control">';
+        echo '</div>';
     }
 }
+
 
 function checkSignupErrors()
 {

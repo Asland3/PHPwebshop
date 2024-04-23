@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION["user_id"] = $result["id"];
         $_SESSION["user_email"] = htmlspecialchars($result["email"]);
         $_SESSION["user_name"] = $result["name"];
-        $_SESSION["user_isAdmin"] = $result["isAdmin"];
+        $_SESSION["user_role"] = $result["role"];
 
         $_session["last_regeneration"] = time();
 
@@ -53,7 +53,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $statement = null;
 
         die();
-
     } catch (PDOException $e) {
         die("Query failed:" . $e->getMessage());
     }

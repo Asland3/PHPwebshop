@@ -8,48 +8,41 @@ require_once "includes/config_session.inc.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Document</title>
-    <style>
-        .navbar {
-            background-color: #333;
-            overflow: hidden;
-            position: fixed;
-            top: 0;
-            width: 100%;
-        }
-
-        .navbar a {
-            float: left;
-            display: block;
-            color: #f2f2f2;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-        }
-
-        .navbar a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-    </style>
 </head>
 
 <body>
 
-    <div class="navbar">
-        <?php
-        if (!isset($_SESSION['user_id'])) { ?>
-            <a href="login.php">Login</a>
-            <a href="signup.php">Signup</a>
-        <?php } else { ?>
-            <a href="#">Logged in as <?php echo $_SESSION['user_name']; ?></a>
-            <p><?php echo $_SESSION['user_isAdmin']; ?></p>
-            <form action="includes/logout.inc.php" method="post" style="float: right;">
-                <button type="submit">Logout</button>
-            </form>
-        <?php }
-        ?>
-    </div>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.php">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav ms-auto">
+                    <?php
+                    if (!isset($_SESSION['user_id'])) { ?>
+                        <a class="nav-link" href="login.php">Login</a>
+                        <a class="nav-link" href="signup.php">Signup</a>
+                    <?php } else { ?>
+                        <span class="nav-link">Logged in as <?php echo $_SESSION['user_name']; ?></span>
+                        <?php
+                        if ($_SESSION['user_role'] === 'admin') { ?>
+                            <a class="nav-link" href="admin.php">Admin Page</a>
+                        <?php } ?>
+                        <form class="d-flex" action="includes/logout.inc.php" method="post">
+                            <button class="btn btn-outline-success" type="submit">Logout</button>
+                        </form>
+                    <?php }
+                    ?>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
 </body>
 
 </html>

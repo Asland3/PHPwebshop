@@ -1,11 +1,12 @@
 <?php
 
-session_start(); // Start the session if not already started
+require_once "includes/config_session.inc.php";
 
-if (!isset($_SESSION['user_isAdmin']) || $_SESSION['user_isAdmin'] != 1) {
-    echo "Error: You are not authorized to view this page.";
-    exit; // Stop further execution of the script
+if ($_SESSION['user_role'] !== 'admin') {
+    echo "You are not authorized to access this page.";
+    exit();
 }
+
 
 
 require_once "includes/dbh.inc.php";
