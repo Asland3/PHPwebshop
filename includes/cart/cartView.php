@@ -36,7 +36,7 @@
                         }
                     }
                 }
-                echo "<p class='fw-bold mt-3'>Total Price: {$totalPrice}</p>";
+                echo "<p class='fw-bold mt-3 fs-5'>Total Price: {$totalPrice}</p>";
             } else {
                 echo "<p class='mt-3'>Your cart is empty.</p>";
             }
