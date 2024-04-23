@@ -31,11 +31,9 @@ require_once "navbar.php";
                 checkSignupErrors();
                 ?>
 
-                <div class="text-center mt-3">
-                    <a href="index.php" class="btn btn-secondary">Abort</a>
-                </div>
             </div>
         </div>
+    </div>
     </div>
 
 </body>

@@ -16,7 +16,7 @@ require_once "includes/config_session.inc.php";
 
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.php">Navbar</a>
+            <a class="navbar-brand" href="index.php">Webshop</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -28,10 +28,8 @@ require_once "includes/config_session.inc.php";
                         <a class="nav-link" href="signup.php">Signup</a>
                     <?php } else { ?>
                         <span class="nav-link">Logged in as <?php echo $_SESSION['user_name']; ?></span>
-                        <?php
-                        if ($_SESSION['user_role'] === 'admin') { ?>
-                            <a class="nav-link" href="admin.php">Admin Page</a>
-                        <?php } ?>
+
+                        <a class="nav-link" href="admin.php">Admin Page</a>
                         <form class="d-flex" action="includes/logout.inc.php" method="post">
                             <button class="btn btn-outline-success" type="submit">Logout</button>
                         </form>

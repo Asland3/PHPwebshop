@@ -62,4 +62,5 @@ function createUser(object $pdo, string $email, string $password, string $name, 
     // Log the user in
     $_SESSION['user_id'] = $user['id'];
     $_SESSION['user_name'] = $user['name'];
+    $_SESSION['user_role'] = $user['role'];
 }

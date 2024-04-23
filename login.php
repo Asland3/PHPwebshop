@@ -37,10 +37,6 @@ require_once "navbar.php";
                 <?php }
                 ?>
 
-                <div class="text-center mt-3">
-                    <a href="index.php" class="btn btn-secondary">Abort</a>
-                </div>
-
                 <?php
                 checkLoginErrors();
                 ?>

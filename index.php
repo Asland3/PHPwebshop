@@ -14,7 +14,7 @@ require_once "navbar.php";
 </head>
 
 <body>
-
+    <br>
     <?php include "includes/products/productsView.php"; ?>
 
 </body>

@@ -1,5 +1,5 @@
 <?php
-
+require_once "navbar.php";
 require_once "includes/config_session.inc.php";
 
 if ($_SESSION['user_role'] !== 'admin') {
@@ -7,16 +7,11 @@ if ($_SESSION['user_role'] !== 'admin') {
     exit();
 }
 
-
-
 require_once "includes/dbh.inc.php";
 require_once "includes/products/productsModel.php";
-require_once "navbar.php";
 
 $products = getProducts($pdo);
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -24,44 +19,62 @@ $products = getProducts($pdo);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Admin Page</title>
 </head>
 
 <body>
-    <h1>Admin Page</h1>
+    <div class="container">
+        <h1 class="text-center my-4">Admin Page</h1>
 
-    <!-- Form for adding a new product -->
-    <form action="includes/admin/add-products.php" method="post" enctype="multipart/form-data">
-        <input type="text" name="name" placeholder="Product Name" required>
-        <input type="file" name="image" required>
-        <input type="number" name="price" placeholder="Price" required>
-        <textarea name="description" placeholder="Description" required></textarea>
-        <button type="submit">Add Product</button>
-    </form>
+        <!-- Form for adding a new product -->
+        <form action="includes/admin/add-products.php" method="post" enctype="multipart/form-data" class="mb-5">
+            <div class="mb-3">
+                <label for="name" class="form-label">Product Name</label>
+                <input type="text" name="name" id="name" placeholder="Product Name" required class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="image" class="form-label">Image</label>
+                <input type="file" name="image" id="image" required class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="price" class="form-label">Price</label>
+                <input type="number" name="price" id="price" placeholder="Price" required class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea name="description" id="description" placeholder="Description" required class="form-control"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Product</button>
+        </form>
 
-    <!-- List of existing products -->
-    <?php foreach ($products as $product) : ?>
-        <div>
-            <img src="<?php echo $product['image']; ?>" alt="<?php echo $product['name']; ?>">
-            <h2><?php echo $product['name']; ?></h2>
-            <p><?php echo $product['price']; ?></p>
+        <!-- List of existing products -->
+        <div class="row">
+            <?php foreach ($products as $product) : ?>
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <img src="<?php echo $product['image']; ?>" alt="<?php echo $product['name']; ?>" class="card-img-top">
+                        <div class="card-body">
 
-            <!-- Form for editing an existing product -->
-            <form method="post" action="includes/admin/edit-products.php">
-                <input type="hidden" name="id" value="<?php echo $product['id']; ?>">
-                <input type="text" name="name" placeholder="Product Name" value="<?php echo $product['name']; ?>" required>
-                <input type="number" name="price" placeholder="Price" value="<?php echo $product['price']; ?>" required>
-                <textarea name="description" placeholder="Description" required><?php echo $product['description']; ?></textarea>
-                <button type="submit" name="edit">Edit</button>
-            </form>
+                            <!-- Form for editing an existing product -->
+                            <form method="post" action="includes/admin/edit-products.php" class="mb-3">
+                                <input type="hidden" name="id" value="<?php echo $product['id']; ?>">
+                                <input type="text" name="name" placeholder="Product Name" value="<?php echo $product['name']; ?>" required class="form-control">
+                                <input type="number" name="price" placeholder="Price" value="<?php echo $product['price']; ?>" required class="form-control">
+                                <textarea name="description" placeholder="Description" required class="form-control"><?php echo $product['description']; ?></textarea>
+                                <button type="submit" name="edit" class="btn btn-primary mt-2">Edit</button>
+                            </form>
 
-            <form method="post" action="includes/admin/delete-products.php">
-                <input type="hidden" name="id" value="<?php echo $product['id']; ?>">
-                <button type="submit" name="delete">Delete</button>
-            </form>
+                            <form method="post" action="includes/admin/delete-products.php">
+                                <input type="hidden" name="id" value="<?php echo $product['id']; ?>">
+                                <button type="submit" name="delete" class="btn btn-danger">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
         </div>
-    <?php endforeach; ?>
-
+    </div>
 </body>
 
 </html>
