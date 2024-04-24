@@ -1,6 +1,7 @@
 <?php
 require_once "navbar.php";
 require_once "includes/config_session.inc.php";
+require_once "includes/products/ProductsController.php";
 
 if ($_SESSION['user_role'] !== 'admin') {
     echo '<div class="container pt-5">';
@@ -17,7 +18,12 @@ if ($_SESSION['user_role'] !== 'admin') {
 require_once "includes/dbh.inc.php";
 require_once "includes/products/productsModel.php";
 
-$products = getProducts($pdo);
+$products = getAllProducts($pdo);
+
+$categories = getCategories($pdo);
+$subcategories = getSubcategories($pdo);
+
+
 ?>
 
 
@@ -52,6 +58,25 @@ $products = getProducts($pdo);
                 <label for="description" class="form-label">Description</label>
                 <textarea name="description" id="description" placeholder="Description" required class="form-control"></textarea>
             </div>
+
+            <div class="mb-3">
+                <label for="category" class="form-label">Category</label>
+                <select name="category" id="category" required class="form-control">
+                    <?php foreach ($categories as $category) : ?>
+                        <option value="<?php echo $category['id']; ?>"><?php echo $category['name']; ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="subcategory" class="form-label">Subcategory</label>
+                <select name="subcategory" id="subcategory" required class="form-control">
+                    <?php foreach ($subcategories as $subcategory) : ?>
+                        <option value="<?php echo $subcategory['id']; ?>"><?php echo $subcategory['name']; ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+
+
             <button type="submit" class="btn btn-primary">Add Product</button>
         </form>
 
