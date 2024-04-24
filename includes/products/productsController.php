@@ -1,6 +1,6 @@
 <?php
 
-require_once "../dbh.inc.php";
+require_once "includes/dbh.inc.php";
 require_once "productsModel.php";
 
 $category = isset($_GET['category']) ? $_GET['category'] : null;

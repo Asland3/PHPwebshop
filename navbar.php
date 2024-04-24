@@ -28,7 +28,7 @@ require_once "includes/config_session.inc.php";
                         <a class="nav-link" href="signup.php">Signup</a>
                     <?php } else { ?>
                         <span class="nav-link">Logged in as <?php echo $_SESSION['user_name']; ?></span>
-                        <a class="nav-link" href="cart.php">Cart</a> <!-- Add this line -->
+                        <a class="nav-link" href="cart.php">Cart</a>
                         <a class="nav-link" href="admin.php">Admin Page</a>
                         <form class="d-flex" action="includes/logout.inc.php" method="post">
                             <button class="btn btn-outline-success" type="submit">Logout</button>
