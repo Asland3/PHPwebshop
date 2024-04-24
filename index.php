@@ -50,6 +50,7 @@ require_once "navbar.php";
                             <img src="<?php echo $product['image']; ?>" alt="<?php echo $product['name']; ?>" class="card-img-top">
                             <div class="card-body">
                                 <h5 class="card-title"><?php echo $product['name']; ?></h5>
+                                <p class="card-text"><?php echo $product['description']; ?></p>
                                 <p class="card-text"><?php echo $product['price']; ?></p>
                                 <form method="post" action="includes/cart/cartController.php" class="d-flex justify-content-between">
                                     <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
