@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-$products = getProducts($pdo);
+$products = getAllProducts($pdo);
 $cart = array();
 foreach ($_SESSION["cart"] as $product_id => $quantity) {
     foreach ($products as $product) {

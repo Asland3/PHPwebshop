@@ -4,7 +4,7 @@
             <h2 class="mb-4">Your Cart</h2>
             <?php
             if (isset($_SESSION["cart"])) {
-                $products = getProducts($pdo);
+                $products = getAllProducts($pdo);
                 $cart = array();
                 $totalPrice = 0;
                 foreach ($_SESSION["cart"] as $product_id => $quantity) {
